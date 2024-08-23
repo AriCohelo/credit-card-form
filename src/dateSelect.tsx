@@ -5,7 +5,7 @@
   <select
     id="cardDateMM"
     className="cardForm__cardDateMM"
-    {...register('cardDateMM')}
+    // {...register('cardDateMM')}
   >
     <option>Month</option>
     {[...Array(12)].map((_, i) => (
@@ -17,7 +17,7 @@
   <select
     id="cardDateYY"
     className="cardForm__cardDateYY"
-    {...register('cardDateYY')}
+    // {...register('cardDateYY')}
   >
     <option>Year</option>
     {[...Array(30)].map((_, i) => {

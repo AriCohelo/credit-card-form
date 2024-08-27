@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import React, { useState } from 'react';
 import { DevTool } from '@hookform/devtools';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
@@ -22,6 +23,7 @@ type FormValues = {
 };
 
 function App() {
+  const [isCvcFocused, setIsCvcFocused] = useState(false);
   const {
     register,
     control,
@@ -39,7 +41,7 @@ function App() {
   const { cardCvc, handleCvcFormat, submitButtonRef } = useFormatCvc({
     setValue,
   });
-  const { hanldeValidateNumber } = useValidateNumber();
+  const { handleValidateNumber } = useValidateNumber();
   const { handleValidateDate } = useValidateDate();
   const { handleValidateCvc } = useValidateCvc({ setError, clearErrors });
 
@@ -50,7 +52,24 @@ function App() {
   return (
     <>
       <article className="cardFormAppContainer ">
-        <div className="cardViewer"></div>
+        {/* 
+        Credit Card Viewer 
+        */}
+
+        <div className="cardViewer m-3 d-flex justify-content-center align-items-center ">
+          <div className="card ">
+            <div className={`card__inner ${isCvcFocused ? 'rotate' : ''}`}>
+              <div className="card__inner-front d-flex flex-column align-items-start p-3">
+                <p>{cardNumber || '0000 0000 0000 0000'}</p>
+                <p>{cardName || 'JOHN APPLESEED'}</p>
+                <p>{cardDate || 'MM/YY'}</p>
+              </div>
+              <div className="card__inner-back p-3">
+                <p>{cardCvc || '123'}</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* 
         Credit Card Form 
@@ -72,7 +91,7 @@ function App() {
               {...register('cardNumber', {
                 onChange: handleNumberFormat,
                 required: 'Card number is required',
-                validate: { hanldeValidateNumber },
+                validate: { handleValidateNumber },
               })}
               value={cardNumber}
             />
@@ -108,7 +127,7 @@ function App() {
           </div>
 
           <div className="row justify-content-center justify-content-md-start">
-            <div className="form-floating mb-3 col">
+            <div className="form-floating mb-3 col-md-3">
               <input
                 type="tel"
                 id="cardDate"
@@ -134,7 +153,7 @@ function App() {
                 {errors.cardDate ? errors.cardDate.message : 'Date (MM/YY)'}
               </label>
             </div>
-            <div className="form-floating mb-3 col position-relative">
+            <div className="form-floating mb-3 col-md-3 position-relative">
               <input
                 type="tel"
                 id="cardCvc"
@@ -149,6 +168,8 @@ function App() {
                 })}
                 ref={cardCvcRef}
                 value={cardCvc}
+                onFocus={() => setIsCvcFocused(true)} // Set focus state to true
+                onBlur={() => setIsCvcFocused(false)} // Set focus state to false
               />
               <label
                 htmlFor="cardCvc"
@@ -181,7 +202,7 @@ function App() {
             </div>
           </div>
           <div className="d-flex justify-content-center justify-content-md-start">
-            <button className="btn btn-outline-primary" ref={submitButtonRef}>
+            <button className="btn btn-outline-warning" ref={submitButtonRef}>
               Submit
             </button>
           </div>

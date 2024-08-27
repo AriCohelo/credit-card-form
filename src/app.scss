@@ -1,12 +1,16 @@
 body {
   padding: 3rem;
-  background-color: #302f2f;
+  background-color: #387f39;
 }
 .form-control {
   font-weight: 600;
+  border: none;
+  border-color: transparent;
+
   &:focus {
+    border: 3px solid #a2ca71;
     box-shadow: none;
-    border: 3px solid #800080;
+    outline: none;
   }
 }
 a {
@@ -27,5 +31,56 @@ label {
 .form-control.is-invalid {
   &:focus {
     box-shadow: none;
+  }
+}
+///////////////////////////
+///
+///
+///
+///
+///
+///
+///
+.card {
+  width: 300px;
+  height: 200px;
+  perspective: 1000px; // Crea la ilusión de profundidad.
+  background-color: transparent;
+  border: none;
+  &__inner {
+    &.rotate {
+      transform: rotateY(180deg); // Rotate the card when the class is applied
+    }
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.8s;
+    transform-style: preserve-3d; // Permite que los hijos se muevan en 3D.
+    background-color: transparent;
+
+    &-front,
+    &-back {
+      border-radius: 10px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; // Oculta la parte trasera cuando se rota.
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: white;
+      background-color: inherit;
+    }
+    &-front {
+      background-color: #007bff;
+    }
+
+    &-back {
+      background-color: #ff5733;
+      transform: rotateY(
+        180deg
+      ); // Hace que la parte trasera esté inicialmente oculta.
+    }
   }
 }

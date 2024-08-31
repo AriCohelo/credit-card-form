@@ -76,7 +76,7 @@ const CreditCardForm: React.FC = () => {
                   onChange: handleFormatName,
                   required: 'Cardholder name is required',
                 })}
-                // ref={cardNameRef} //when i add this line handleFormatName stops updating the actual field but logs formatted, how to add a ref properly?
+                // ref={cardNameRef} //Ihave to solve the refs
               />
               <FormLabel htmlFor="cardName" bg="tomato">
                 {errors.cardName ? errors.cardName.message : 'Cardholder Name'}

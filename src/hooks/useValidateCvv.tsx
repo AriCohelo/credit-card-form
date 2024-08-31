@@ -1,14 +1,14 @@
 import { UseFormSetError, UseFormClearErrors } from 'react-hook-form';
 
-interface UseValidateCvcProps {
+interface UseValidateCvvProps {
   setError: UseFormSetError<any>;
   clearErrors: UseFormClearErrors<any>;
 }
 
-export function useValidateCvc({ setError, clearErrors }: UseValidateCvcProps) {
-  const handleValidateCvc = (value: string): true | string => {
+export function useValidateCvv({ setError, clearErrors }: UseValidateCvvProps) {
+  const handleValidateCvv = (value: string): true | string => {
     if (value.length === 0) {
-      setError('cardCvc', {
+      setError('cardCvv', {
         type: 'manual',
         message: 'CVC number is required',
       });
@@ -16,19 +16,19 @@ export function useValidateCvc({ setError, clearErrors }: UseValidateCvcProps) {
       return 'CVC number is required';
     }
     if (value.length < 3) {
-      setError('cardCvc', {
+      setError('cardCvv', {
         type: 'manual',
         message: 'Invalid CVC number',
       });
       return 'Invalid CVC number';
     }
-    // setError('cardCvc', { type: 'manual', message: '' });
-    clearErrors('cardCvc');
+    // setError('cardCvv', { type: 'manual', message: '' });
+    clearErrors('cardCvv');
 
     return true;
   };
 
   return {
-    handleValidateCvc,
+    handleValidateCvv,
   };
 }

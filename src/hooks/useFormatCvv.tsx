@@ -25,26 +25,26 @@
 import { useState, useRef } from 'react';
 import { UseFormSetValue } from 'react-hook-form';
 
-interface useFormatCvcProps {
+interface useFormatCvvProps {
   setValue: UseFormSetValue<any>;
 }
 
-export function useFormatCvc({ setValue }: useFormatCvcProps) {
-  const [cardCvc, setCardCvc] = useState<string>('');
+export function useFormatCvv({ setValue }: useFormatCvvProps) {
+  const [cardCvv, setCardCvv] = useState<string>('');
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleCvcFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCvvFormat = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedValue = e.target.value.replace(/\D/g, '').slice(0, 3);
-    setCardCvc(formattedValue);
-    setValue('cardCvc', formattedValue);
+    setCardCvv(formattedValue);
+    setValue('cardCvv', formattedValue);
     if (formattedValue.length >= 3 && submitButtonRef.current) {
       submitButtonRef.current.focus();
     }
   };
 
   return {
-    cardCvc,
-    handleCvcFormat,
+    cardCvv,
+    handleCvvFormat,
     submitButtonRef,
   };
 }

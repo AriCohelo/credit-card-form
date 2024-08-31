@@ -1,49 +1,6 @@
-body {
-  padding: 3rem;
-  background-color: #387f39;
-}
-.form-control {
-  font-weight: 600;
-  border: none;
-  border-color: transparent;
-
-  &:focus {
-    border: 3px solid #a2ca71;
-    box-shadow: none;
-    outline: none;
-  }
-}
-a {
-  text-decoration: none;
-  color: inherit;
-}
-.row {
-  & label {
-    left: 12px;
-  }
-}
-p {
-  align-content: center;
-}
-label {
-  color: gray;
-}
-.form-control.is-invalid {
-  &:focus {
-    box-shadow: none;
-  }
-}
-///////////////////////////
-///
-///
-///
-///
-///
-///
-///
 .card {
-  width: 300px;
-  height: 200px;
+  width: 506px;
+  height: 318px;
   perspective: 1000px; // Crea la ilusión de profundidad.
   background-color: transparent;
   border: none;
@@ -58,8 +15,8 @@ label {
     transform-style: preserve-3d; // Permite que los hijos se muevan en 3D.
     background-color: transparent;
 
-    &-front,
-    &-back {
+    &__front,
+    &__back {
       border-radius: 10px;
       position: absolute;
       width: 100%;
@@ -72,15 +29,74 @@ label {
       color: white;
       background-color: inherit;
     }
-    &-front {
-      background-color: #007bff;
-    }
+    &__front {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        'company company company company company .'
+        'slogan slogan . . . .'
+        'chip . . . . .'
+        'numName numName numName thru date mcSymbol';
+      background: linear-gradient(to right, #b00d0d 0%, #4a0505 75%);
+      height: 318px;
+      width: 506px;
+      border-radius: 19px;
+      padding: 2rem;
+      &-company {
+        font-family: 'dogma-bold', sans-serif;
+        color: #a1a1a1;
+        font-size: 3.6875rem;
+        line-height: 1;
+        grid-area: company;
+        margin-bottom: 0;
+      }
+      &-slogan {
+        font-family: 'Lalezar', system-ui;
+        font-size: 0.5rem;
+        color: #a1a1a1;
+        letter-spacing: 3px;
+        grid-area: slogan;
+      }
+      &-chip {
+        height: 58px;
+        grid-area: chip;
+      }
+      &-numName {
+        grid-area: numName;
+        border-right: 1px solid rgba(161, 161, 161, 0.75);
+      }
+      &-number {
+        grid-area: number;
+        margin-bottom: 0;
+      }
+      &-name {
+        grid-area: name;
+        margin-bottom: 0;
+      }
+      &-thru {
+        grid-area: thru;
+        line-height: 1;
+        margin-left: 0.5rem;
+      }
+      &-date {
+        grid-area: date;
+      }
+      &-mcSymbol {
+        width: 122px;
+        grid-area: mcSymbol;
+      }
 
-    &-back {
-      background-color: #ff5733;
-      transform: rotateY(
-        180deg
-      ); // Hace que la parte trasera esté inicialmente oculta.
+      &-number,
+      &-name,
+      &-thru,
+      &-date {
+        font-size: 18px;
+        color: rgba(161, 161, 161, 0.75);
+      }
+    }
+    &__back {
+      background: linear-gradient(to right, #b00d0d 0%, #4a0505 75%);
+      transform: rotateY(180deg);
     }
   }
 }

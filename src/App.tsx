@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { DevTool } from '@hookform/devtools';
+import { useForm, FormProvider } from 'react-hook-form';
 
 import { useFormatNumber } from './hooks/useFormatNumber.tsx';
 import { useFormatName } from './hooks/useFormatName.tsx';
@@ -12,57 +11,28 @@ import { useValidateDate } from './hooks/useValidateDate.tsx';
 import { useValidateCvv } from './hooks/useValidateCvv.tsx';
 
 import './app.scss';
-import { useTheme } from './hooks/useTheme.tsx';
 import CreditCardViewer from './components/creditCardViewer.tsx';
-// import CreditCardForm from './components/creditCardForm.tsx';
+import CreditCardForm from './components/creditCardForm.tsx';
 
-import {
-  ChakraProvider,
-  FormControl,
-  Input,
-  FormLabel,
-  Box,
-  Button,
-  Flex,
-} from '@chakra-ui/react';
-
-type FormValues = {
+interface FormValues {
   cardName: string;
   cardNumber: string;
   cardDate: string;
   cardCvv: string;
-};
-
+}
 function App() {
-  const theme = useTheme();
   const [isCvvFocused, setIsCvvFocused] = useState(false);
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState,
-    setValue,
-    setError,
-    clearErrors,
-  } = useForm<FormValues>();
-  const { errors } = formState;
-  const { cardName, handleNameFormat } = useFormatName({ setValue });
-  const { cardNumber, handleNumberFormat, cardNameRef } = useFormatNumber();
-  const { cardDate, handleDateFormat, cardCvvRef } = useFormatDate();
-  const { cardCvv, handleCvvFormat, submitButtonRef } = useFormatCvv({
-    setValue,
-  });
-  const { handleValidateNumber } = useValidateNumber();
-  const { handleValidateDate } = useValidateDate();
-  const { handleValidateCvv } = useValidateCvv({ setError, clearErrors });
+  const { setValue } = useForm<FormValues>();
+  const { cardName } = useFormatName({ setValue });
+  const { cardNumber } = useFormatNumber();
+  const { cardDate } = useFormatDate();
+  const { cardCvv } = useFormatCvv({ setValue });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Form submitted:', data);
-  };
+  const methods = useForm();
 
   return (
     <>
-      <ChakraProvider theme={theme}>
+      <FormProvider {...methods}>
         <CreditCardViewer
           cardNumber={cardNumber}
           cardName={cardName}
@@ -71,7 +41,9 @@ function App() {
           isCvvFocused={isCvvFocused}
           setIsCvvFocused={setIsCvvFocused}
         />
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <CreditCardForm />
+      </FormProvider>
+      {/* <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <Flex align="center" justify="center" direction="column">
             <Box p="1rem" maxW="500px">
               <FormControl variant="floating">
@@ -160,9 +132,7 @@ function App() {
               Submit
             </Button>
           </Flex>
-        </form>
-        <DevTool control={control} />
-      </ChakraProvider>
+        </form> */}
     </>
   );
 }

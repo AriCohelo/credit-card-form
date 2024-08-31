@@ -1,5 +1,6 @@
 import cardChipSilver from '../assets/card-chip-silver.png';
 import mcSymbol from '../assets/mc_symbol.svg';
+import { useFormContext } from 'react-hook-form';
 
 type CreditCardViewerProps = {
   cardNumber: string;
@@ -11,13 +12,17 @@ type CreditCardViewerProps = {
 };
 
 const CreditCardViewer: React.FC<CreditCardViewerProps> = ({
-  cardNumber,
-  cardName,
-  cardDate,
-  cardCvv,
+  // cardNumber,
+  // cardName,
+  // cardDate,
+  // cardCvv,
   isCvvFocused,
   setIsCvvFocused,
 }) => {
+  const { watch } = useFormContext();
+  const cardNumber = watch('cardNumber');
+  const cardName = watch('cardName');
+
   return (
     <div className="cardViewer m-3 d-flex justify-content-center align-items-center">
       <div className="card">
@@ -43,7 +48,7 @@ const CreditCardViewer: React.FC<CreditCardViewerProps> = ({
               <br />
               thru
             </p>
-            <p className="card__inner__front-date">{cardDate || 'MM/YY'}</p>
+            {/* <p className="card__inner__front-date">{cardDate || 'MM/YY'}</p> */}
             <img
               src={mcSymbol}
               alt="mcSymbol"
@@ -51,7 +56,7 @@ const CreditCardViewer: React.FC<CreditCardViewerProps> = ({
             />
           </div>
           <div className="card__inner__back">
-            <p>{cardCvv || '123'}</p>
+            {/* <p>{cardCvv || '123'}</p> */}
           </div>
         </div>
       </div>

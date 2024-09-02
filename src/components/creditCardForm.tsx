@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useFormContext, SubmitHandler } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import {
@@ -67,7 +67,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = ({ setIsCvvFocused }) => {
           <Box p="1rem" maxW="500px">
             <FormControl variant="floating">
               <Input
-                type="tel"
+                type="text"
                 id="cardName"
                 placeholder=""
                 {...register('cardName', {

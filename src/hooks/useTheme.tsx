@@ -10,7 +10,7 @@ export const useTheme = () => {
     styles: {
       global: {
         'html, body': {
-          backgroundColor: 'gray', // Use Chakra UI color tokens or custom hex values
+          backgroundColor: 'rgba(0, 0, 0, 0.16)', // Use Chakra UI color tokens or custom hex values
           color: 'gray.800', // Optional: Set default text color
           lineHeight: 'base', // Optional: Set default line height
           margin: 0, // Reset default body margin

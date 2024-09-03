@@ -19,8 +19,10 @@ export const useTheme = () => {
     components: {
       Input: {
         baseStyle: {
-          color: 'rgba(161, 161, 161, 0.75)',
-          border: '2px solid rgba(161, 161, 161, 0.75)',
+          field: {
+            bg: 'yellow.500',
+            borderColor: 'yellow.500', // Customize as needed
+          },
         },
       },
       Form: {

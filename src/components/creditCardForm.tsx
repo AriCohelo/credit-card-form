@@ -7,7 +7,6 @@ import {
   FormLabel,
   Box,
   Button,
-  Flex,
   Grid,
   GridItem,
 } from '@chakra-ui/react';
@@ -26,6 +25,7 @@ interface FormValues {
 interface CreditCardFormProps {
   setIsCvvFocused: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 const CreditCardForm: React.FC<CreditCardFormProps> = ({ setIsCvvFocused }) => {
   const {
     formState: { errors },
@@ -57,6 +57,7 @@ const CreditCardForm: React.FC<CreditCardFormProps> = ({ setIsCvvFocused }) => {
                 placeholder=""
                 borderRadius="30px"
                 h="50px"
+                color="gray"
                 {...register('cardNumber', {
                   required: 'Card number is required',
                   onChange: handleFormatNumber,

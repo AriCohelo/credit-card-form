@@ -8,6 +8,8 @@ import {
   Box,
   Button,
   Flex,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 
 import { useCardNumber } from '../hooks/useCardNumber';
@@ -44,66 +46,74 @@ const CreditCardForm: React.FC<CreditCardFormProps> = ({ setIsCvvFocused }) => {
     console.log('Form Data:', data);
   };
   return (
-    <Box>
+    <Box p="0 14rem">
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <Flex align="center" justify="center" direction="column">
-          <Box p="1rem" maxW="500px">
+        <Grid gridTemplateColumns="1fr 1fr">
+          <GridItem p=".7rem" maxW="500px" colSpan={2}>
             <FormControl variant="floating">
               <Input
                 type="tel"
                 id="cardNumber"
                 placeholder=""
+                borderRadius="30px"
+                h="50px"
                 {...register('cardNumber', {
                   required: 'Card number is required',
                   onChange: handleFormatNumber,
                   validate: handleValidateNumber,
                 })}
               />
-              <FormLabel htmlFor="cardNumber" bg="transparent">
+              <FormLabel htmlFor="cardNumber" color="rgba(161, 161, 161, 0.75)">
                 {errors.cardNumber ? errors.cardNumber.message : 'Card Number'}
               </FormLabel>
             </FormControl>
-          </Box>
-          <Box p="1rem" maxW="500px">
+          </GridItem>
+          <GridItem p=".7rem" maxW="500px" colSpan={2}>
             <FormControl variant="floating">
               <Input
                 type="text"
                 id="cardName"
                 placeholder=""
+                borderRadius="30px"
+                h="50px"
+                // ref={cardNameRef}
                 {...register('cardName', {
                   required: 'Cardholder name is required',
                   onChange: handleFormatName,
                 })}
-                // ref={cardNameRef}
               />
-              <FormLabel htmlFor="cardName" bg="tomato">
+              <FormLabel htmlFor="cardName" color="rgba(161, 161, 161, 0.75)">
                 {errors.cardName ? errors.cardName.message : 'Cardholder Name'}
               </FormLabel>
             </FormControl>
-          </Box>
-          <Box p="1rem" maxW="500px">
+          </GridItem>
+          <GridItem p=".7rem" maxW="500px">
             <FormControl variant="floating">
               <Input
                 type="tel"
                 id="cardDate"
                 placeholder=""
+                borderRadius="30px"
+                h="50px"
                 {...register('cardDate', {
                   required: 'Date is required',
                   onChange: handleFormatDate,
                   validate: handleValidateDate,
                 })}
               />
-              <FormLabel htmlFor="cardDate">
+              <FormLabel htmlFor="cardDate" color="rgba(161, 161, 161, 0.75)">
                 {errors.cardDate ? errors.cardDate.message : 'Date (MM/YY)'}
               </FormLabel>
             </FormControl>
-          </Box>
-          <Box p="1rem" maxW="500px">
+          </GridItem>
+          <GridItem p=".7rem" maxW="500px">
             <FormControl variant="floating">
               <Input
                 type="tel"
                 id="cardCvv"
                 placeholder=""
+                borderRadius="30px"
+                h="50px"
                 {...register('cardCvv', {
                   required: 'CVV is required',
                   onChange: handleFormatCvv,
@@ -113,15 +123,22 @@ const CreditCardForm: React.FC<CreditCardFormProps> = ({ setIsCvvFocused }) => {
                 onBlur={() => setIsCvvFocused(false)}
                 // ref={cardCvvRef}
               />
-              <FormLabel htmlFor="cardCvv">
+              <FormLabel htmlFor="cardCvv" color="rgba(161, 161, 161, 0.75)">
                 {errors.cardCvv ? errors.cardCvv.message : 'CVV'}
               </FormLabel>
             </FormControl>
-          </Box>
-          <Button type="submit" ref={submitButtonRef}>
-            Submit
-          </Button>
-        </Flex>
+          </GridItem>
+          <GridItem colSpan={2} p=".5rem">
+            <Button
+              width="100%"
+              borderRadius="30px"
+              type="submit"
+              ref={submitButtonRef}
+            >
+              Submit
+            </Button>
+          </GridItem>
+        </Grid>
       </form>
       <DevTool control={control} />
     </Box>

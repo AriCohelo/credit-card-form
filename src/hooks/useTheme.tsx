@@ -2,7 +2,7 @@
 import { extendTheme } from '@chakra-ui/react';
 
 const activeLabelStyles = {
-  transform: 'scale(0.85) translateY(-35px)',
+  transform: 'scale(0.85) translateY(-40px)',
 };
 
 export const useTheme = () => {
@@ -10,15 +10,19 @@ export const useTheme = () => {
     styles: {
       global: {
         'html, body': {
-          backgroundColor: 'rgba(0, 0, 0, 0.16)', // Use Chakra UI color tokens or custom hex values
-          color: 'gray.800', // Optional: Set default text color
-          lineHeight: 'base', // Optional: Set default line height
-          margin: 0, // Reset default body margin
-          padding: 0, // Reset default body padding
+          background: 'linear-gradient(to left, #b00d0d 0%, #4a0505 75%)',
+          margin: 0,
+          padding: 0,
         },
       },
     },
     components: {
+      Input: {
+        baseStyle: {
+          color: 'rgba(161, 161, 161, 0.75)',
+          border: '2px solid rgba(161, 161, 161, 0.75)',
+        },
+      },
       Form: {
         variants: {
           floating: {
@@ -33,7 +37,7 @@ export const useTheme = () => {
                   ...activeLabelStyles,
                 },
               label: {
-                top: 0,
+                top: 1.5,
                 left: 0,
                 zIndex: 2,
                 position: 'absolute',

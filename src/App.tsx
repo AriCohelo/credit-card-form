@@ -3,7 +3,6 @@ import { useForm, FormProvider } from 'react-hook-form';
 import CreditCardViewer from './components/creditCardViewer.tsx';
 import CreditCardForm from './components/creditCardForm.tsx';
 import { useState } from 'react';
-import './app.scss';
 
 function App() {
   const methods = useForm();

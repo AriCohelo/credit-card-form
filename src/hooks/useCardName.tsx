@@ -6,7 +6,7 @@ export function useCardName() {
   const handleFormatName = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     const cleanValue = inputValue.toUpperCase().replace(/[^A-Z\s]/g, '');
-    const limitedValue = cleanValue.slice(0, 35);
+    const limitedValue = cleanValue.slice(0, 19);
 
     console.log(typeof limitedValue);
     if (limitedValue !== inputValue) {

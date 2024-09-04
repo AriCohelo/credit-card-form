@@ -32,8 +32,16 @@ const CreditCardViewer: React.FC<CreditCardViewerProps> = ({
   const { cardNumber, cardName, cardDate, cardCvv } = watch();
 
   return (
-    <Flex justifyContent="center" p="2rem">
-      <Box minWidth="404px" minHeight="254px" sx={{ perspective: '1000px' }}>
+    <Flex justifyContent="center" p="2rem 2rem 0 2rem">
+      <Box
+        minWidth="404px"
+        minHeight="254px"
+        sx={{ perspective: '1000px' }}
+        transform={{
+          base: 'scale(0.8)',
+          sm: 'scale(1)',
+        }}
+      >
         <ChakraBox
           width="100%"
           height="100%"

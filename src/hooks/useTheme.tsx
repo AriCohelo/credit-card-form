@@ -11,20 +11,13 @@ export const useTheme = () => {
       global: {
         'html, body': {
           background: 'linear-gradient(to left, #b00d0d 0%, #4a0505 75%)',
+          backgroundRepeat: 'no-repeat',
           margin: 0,
           padding: 0,
         },
       },
     },
     components: {
-      Input: {
-        baseStyle: {
-          field: {
-            bg: 'yellow.500',
-            borderColor: 'yellow.500', // Customize as needed
-          },
-        },
-      },
       Form: {
         variants: {
           floating: {
